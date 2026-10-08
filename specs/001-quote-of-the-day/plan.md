@@ -60,7 +60,7 @@ not a dependency.
 | FR-006, FR-007 | `tests/favorites-store.test.js` (toggle) + quickstart step 4 |
 | FR-008, FR-009 | `tests/favorites-store.test.js` (save/load round trip by ID) + quickstart step 5 |
 | FR-010 | `tests/favorites-store.test.js` (corrupt JSON, wrong types, throwing storage) + quickstart step 7 |
-| FR-011 | Native buttons + `aria-pressed`; quickstart step 8 |
+| FR-011 | `tests/app.test.js` (constant accessible name, `aria-pressed` state, icon hidden from AT) + quickstart step 8 |
 
 ## Project Structure
 

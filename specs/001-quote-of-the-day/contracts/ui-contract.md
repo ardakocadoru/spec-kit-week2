@@ -11,15 +11,17 @@ is a contract change and requires a plan update.
 | Quote author | `#quote-author` | Author name, rendered after the quote text. FR-002 |
 | Quote region | `#quote` | `aria-live="polite"` so a new quote is announced. FR-011 |
 | New quote button | `#new-quote` | Native `<button>`, visible label "New quote". FR-004, FR-011 |
-| Favorite button | `#favorite-toggle` | Native `<button>` with `aria-pressed`. FR-006, FR-007, FR-011 |
+| Favorite button | `#favorite-toggle` | Native `<button>` with `aria-pressed`. Contains `#favorite-icon` followed by the text `Favorite`. FR-006, FR-007, FR-011 |
+| Favorite icon | `#favorite-icon` | `<span aria-hidden="true">` inside the favorite button; purely visual. FR-007 |
 
 ## Favorite button states
 
-| Displayed quote is a favorite | `aria-pressed` | Visible label |
-|-------------------------------|----------------|---------------|
-| No                            | `"false"`      | `☆ Favorite`  |
-| Yes                           | `"true"`       | `★ Favorited` |
+| Displayed quote is a favorite | `aria-pressed` | `#favorite-icon` | Accessible name |
+|-------------------------------|----------------|------------------|-----------------|
+| No                            | `"false"`      | `☆`              | `Favorite`      |
+| Yes                           | `"true"`       | `★`              | `Favorite`      |
 
+The accessible name never changes; only `aria-pressed`, the icon, and the pressed style do.
 The state must be re-rendered every time the displayed quote changes and every time the
 button is pressed.
 

@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-08
 
-**Status**: Draft
+**Status**: Draft (revised 2026-10-08: FR-011 clarified, see plan research R6)
 
 **Input**: User description: "A quote-of-the-day page: one random quote from a built-in list, a "New quote" button, and favoriting that persists across reloads."
 
@@ -116,7 +116,10 @@ confirm it is no longer marked.
 - **FR-010**: If saved favorites cannot be read or saved, the page MUST continue to provide
   FR-002 through FR-007 for the current visit without showing a technical error.
 - **FR-011**: All controls MUST be usable with a keyboard and MUST have accessible names that
-  describe their action and, for the favorite control, its current state.
+  describe their action. The favorite control MUST keep the same accessible name in both
+  states and expose whether the displayed quote is a favorite as a separate on/off state,
+  so assistive technology announces the state once (e.g. "Favorite, toggle button,
+  pressed") instead of folding it into the name.
 
 ### Key Entities
 

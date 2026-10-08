@@ -67,10 +67,21 @@ Planning input: "Use plain HTML/CSS/JavaScript, no backend; persist favorites in
 
 ## R6. Accessible favorite control (FR-011)
 
-- **Decision**: A single `<button>` with `aria-pressed="true|false"` and a visible label that
-  changes between "☆ Favorite" and "★ Favorited". The quote region uses `aria-live="polite"`
-  so screen readers announce a new quote.
+- **Decision** (revised): A single `<button>` with `aria-pressed="true|false"` whose text is
+  always "Favorite". The visible state is a star icon in a separate
+  `<span id="favorite-icon" aria-hidden="true">` that switches between ☆ and ★, plus a
+  pressed style. The quote region uses `aria-live="polite"` so screen readers announce a
+  new quote.
 - **Rationale**: `aria-pressed` is the standard pattern for a toggle button and exposes its
-  state to assistive technology. Native buttons are keyboard-operable by default (SC-005).
-- **Alternatives considered**: a checkbox styled as a star — works, but a toggle button better
-  matches the "single control" wording of FR-006.
+  state to assistive technology. The WAI-ARIA Authoring Practices button pattern requires
+  that a toggle button's label does **not** change with its state; otherwise the state is
+  announced twice and the pressed name ("Favorited") stops describing the action. Hiding
+  the star from assistive technology stops it being read as "black star"/"white star".
+  Keeping the visible text equal to the accessible name also satisfies WCAG 2.5.3 (Label in
+  Name). Native buttons are keyboard-operable by default (SC-005).
+- **Alternatives considered**:
+  - A checkbox styled as a star — works, but a toggle button better matches the "single
+    control" wording of FR-006.
+  - *Original decision*: visible label switching between "☆ Favorite" and "★ Favorited"
+    together with `aria-pressed`. Rejected during implementation of the FR-011 test: the
+    state was announced twice and the star glyph became part of the accessible name.
