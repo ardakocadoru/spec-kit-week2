@@ -1,0 +1,114 @@
+:root {
+  --bg: #f5f3ef;
+  --card: #ffffff;
+  --text: #1f2328;
+  --muted: #5c6370;
+  --accent: #b5651d;
+  --focus: #1a73e8;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.5;
+}
+
+.card {
+  width: 100%;
+  max-width: 40rem;
+  padding: 2rem;
+  background: var(--card);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  margin: 0 0 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+figure {
+  margin: 0 0 2rem;
+}
+
+blockquote {
+  margin: 0;
+}
+
+#quote-text {
+  margin: 0 0 0.75rem;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.5rem;
+  overflow-wrap: anywhere;
+}
+
+#quote-author {
+  color: var(--muted);
+}
+
+#quote-author::before {
+  content: "— ";
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--accent);
+  border-radius: 8px;
+  background: var(--card);
+  color: var(--accent);
+  font: inherit;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #fbf3ec;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+#new-quote {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+#favorite-toggle[aria-pressed="true"] {
+  background: #fbf3ec;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 1.25rem;
+  }
+
+  #quote-text {
+    font-size: 1.2rem;
+  }
+
+  .actions button {
+    flex: 1 1 100%;
+  }
+}
