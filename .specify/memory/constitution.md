@@ -1,50 +1,94 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+# Quote of the Day Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. Readable, Single-Purpose Code
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+- Every file and function MUST have one clear responsibility that can be stated in a
+  single sentence.
+- Application logic (choosing quotes, managing favorites) MUST be kept separate from
+  DOM rendering so it can be read and tested without a browser.
+- Names MUST describe intent (`pickNextQuote`, not `doStuff`). Comments explain *why*,
+  never restate *what* the code does.
+- Dead code, commented-out code, and unused files MUST NOT be committed.
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+**Rationale**: A small codebase stays maintainable only if any part of it can be
+understood in isolation.
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### II. Test-Backed Behavior (NON-NEGOTIABLE)
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+- Every functional requirement in the spec MUST be covered by at least one automated
+  test, and the test MUST reference the requirement ID it verifies.
+- Tests MUST run with a single command, without network access or third-party packages.
+- A change is not done until the full test suite passes. Failing or skipped tests MUST
+  NOT be committed.
+- Bugs found after implementation MUST first be reproduced as a failing test, then fixed.
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+**Rationale**: Tests are the only objective evidence that the code matches the spec.
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+### III. Simplicity Over Cleverness
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+- Prefer the platform's built-in capabilities over frameworks, build steps, or
+  dependencies. Any added dependency MUST be justified in the plan.
+- Build only what the spec requires. Speculative features, options, and abstractions
+  are out of scope (YAGNI).
+- Static content such as the quote list MUST live in a single, clearly named data
+  module, separate from logic.
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+**Rationale**: Every extra layer is something future maintainers must learn and keep
+working.
+
+### IV. Defensive Handling of Stored Data
+
+- Anything read from persistent storage MUST be treated as untrusted: missing,
+  malformed, or outdated data MUST NOT crash the page or block core functionality.
+- When storage is unavailable or fails, the app MUST keep working for the current
+  session and MUST NOT show a raw error to the user.
+- Stored data MUST use stable identifiers rather than array positions, so editing the
+  data module does not corrupt saved state.
+
+**Rationale**: Browser storage can be cleared, disabled, full, or edited by hand; the
+user should never lose the basic experience because of it.
+
+### V. Spec Is the Source of Truth
+
+- Behavior MUST trace to a requirement in the feature spec. Code that implements
+  unrequested behavior is a defect, not a bonus.
+- When implementation reveals that a requirement is vague or wrong, the spec or plan
+  MUST be corrected first, and the code regenerated from the corrected artifact.
+  Silent code-only fixes are not allowed.
+
+**Rationale**: The spec is only durable if it stays accurate; otherwise the next change
+starts from a document nobody trusts.
+
+## Quality Gates
+
+A change MAY be merged only when all of the following hold:
+
+1. The full automated test suite passes locally.
+2. The page loads from a plain file or static server with no console errors.
+3. Each acceptance scenario in the spec has been checked, either by an automated test
+   or by a recorded manual check.
+4. No principle in this constitution is violated, or the violation is documented and
+   justified in the plan's Complexity Tracking section.
+
+## Development Workflow
+
+- Work follows the Spec Kit sequence: constitution → specify → plan → tasks →
+  implement → converge.
+- A human reviews each artifact before the next stage starts. Problems are fixed in the
+  artifact where they originate, not patched downstream.
+- Implement and converge repeat until converge reports no remaining work.
+- Each completed stage is committed separately so the history shows how the feature
+  evolved.
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- This constitution supersedes conflicting guidance in any other project document.
+- Amendments require a written rationale, a version bump, and an updated Last Amended
+  date. Versioning follows semantic versioning: MAJOR for removed or redefined
+  principles, MINOR for added principles or sections, PATCH for wording clarifications.
+- Every plan MUST include a Constitution Check, and every converge run MUST treat a
+  violated MUST principle as a critical finding.
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-10-08 | **Last Amended**: 2026-10-08
