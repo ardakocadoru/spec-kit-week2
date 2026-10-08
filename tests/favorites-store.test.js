@@ -28,7 +28,7 @@ function createThrowingStorage() {
   };
 }
 
-test("storage key matches the storage contract", () => {
+test("FR-008: favorites are stored under the key from the storage contract", () => {
   assert.equal(STORAGE_KEY, "qotd.favorites.v1");
 });
 

@@ -183,4 +183,4 @@ Task: "T013 [US3] Implement createFavoritesStore in js/favorites-store.js"
 
 ## Phase 9: Convergence
 
-- [ ] T027 CRITICAL: Rename the storage-key test in `tests/favorites-store.test.js` to reference the requirement it verifies ("FR-008: ...") per Constitution II (partial)
+- [X] T027 CRITICAL: Rename the storage-key test in `tests/favorites-store.test.js` to reference the requirement it verifies ("FR-008: ...") per Constitution II (partial)
