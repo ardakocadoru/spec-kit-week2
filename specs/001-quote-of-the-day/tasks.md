@@ -171,3 +171,10 @@ Task: "T013 [US3] Implement createFavoritesStore in js/favorites-store.js"
 - [ ] T022 CRITICAL: Test that clicking `#favorite-toggle` flips `aria-pressed` and the visible label, and that the indicator is re-rendered when a new quote is shown, in `tests/app.test.js` per FR-006, FR-007 and Constitution II (missing)
 - [ ] T023 CRITICAL: Test the favorite control's accessible name and state exposure in `tests/app.test.js` per FR-011 and Constitution II (missing)
 - [X] T024 CRITICAL: Test that the page still renders a quote and toggles favorites when reading `window.localStorage` throws, in `tests/app.test.js` per FR-010 and Constitution II (missing)
+
+---
+
+## Phase 8: Convergence
+
+- [ ] T025 Change the favorite button in `index.html` to contain `<span id="favorite-icon" aria-hidden="true">☆</span>` followed by the constant text `Favorite` per FR-011 and contracts/ui-contract.md (contradicts)
+- [ ] T026 Change `renderFavoriteState` in `js/app.js` to update only `aria-pressed` and the `#favorite-icon` glyph (☆/★), never the button's own text, per FR-011 and research R6 (contradicts)
