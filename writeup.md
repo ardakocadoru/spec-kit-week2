@@ -4,6 +4,11 @@
 **Spec Kit:** specify-cli 1.1.2
 **Result:** Converged after 4 converge runs; 25 automated tests passing (`node --test`)
 
+**Where the spec artifacts are:** Spec Kit keeps the constitution in
+`.specify/memory/constitution.md` and the feature artifacts (spec, plan, research, data
+model, contracts, quickstart, tasks) in `specs/001-quote-of-the-day/`. Both folders are
+committed; neither is gitignored.
+
 ## 1. Prompts given to each skill
 
 | Stage | Prompt | Output |
@@ -122,13 +127,12 @@ Final checks:
 
 ## 4. What I learned
 
-SDD felt like overhead at the very start. Writing a constitution, a spec, a research note,
-two contracts and 19 tasks for a page with two buttons takes longer than just building it,
-and some test-first steps were ceremony: the plan already said "exclude the current quote",
-so the FR-005 tests passed the first time they ran. It paid off as soon as something was
-ambiguous. Converge caught gaps I would have shipped (no tests for the page code), and the
-FR-011 problem was fixed once in the spec and then flowed through the plan, tasks, code and
-tests, instead of becoming a quiet code patch that the spec would no longer describe. The
-biggest lesson is that converge can only check code against the spec. A spec that is
-precise but wrong still "converges", so the human review of the spec is the step that
-actually decides quality.
+SDD felt like overhead at the start: a constitution, a spec, two contracts and 19 tasks for
+a page with two buttons took longer than just building it, and some test-first steps were
+ceremony (the FR-005 tests passed on their first run because the plan already excluded the
+current quote). It paid off as soon as something was ambiguous: converge caught gaps I would
+have shipped, such as the untested page code, and the FR-011 problem was fixed once in the
+spec and then flowed through the plan, tasks, code and tests instead of becoming a quiet
+code patch. The biggest lesson is that converge only checks code against the spec, so a
+spec that is precise but wrong still "converges". That makes the human review of the spec
+the step that actually decides quality.
