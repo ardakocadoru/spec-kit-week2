@@ -178,3 +178,9 @@ Task: "T013 [US3] Implement createFavoritesStore in js/favorites-store.js"
 
 - [X] T025 Change the favorite button in `index.html` to contain `<span id="favorite-icon" aria-hidden="true">☆</span>` followed by the constant text `Favorite` per FR-011 and contracts/ui-contract.md (contradicts)
 - [X] T026 Change `renderFavoriteState` in `js/app.js` to update only `aria-pressed` and the `#favorite-icon` glyph (☆/★), never the button's own text, per FR-011 and research R6 (contradicts)
+
+---
+
+## Phase 9: Convergence
+
+- [ ] T027 CRITICAL: Rename the storage-key test in `tests/favorites-store.test.js` to reference the requirement it verifies ("FR-008: ...") per Constitution II (partial)
