@@ -166,8 +166,8 @@ Task: "T013 [US3] Implement createFavoritesStore in js/favorites-store.js"
 
 ## Phase 7: Convergence
 
-- [ ] T020 CRITICAL: Add a dependency-free DOM test harness in `tests/app.test.js` that loads `js/quotes.js`, `js/quote-picker.js`, `js/favorites-store.js` and `js/app.js` into one `node:vm` context with a minimal fake `document`/`window`, so `js/app.js` behavior can be tested per Constitution II (missing)
-- [ ] T021 CRITICAL: Test that the page renders one quote's text and author on load and that clicking `#new-quote` renders a different quote, in `tests/app.test.js` per FR-002, FR-004 and Constitution II (missing)
+- [X] T020 CRITICAL: Add a dependency-free DOM test harness in `tests/app.test.js` that loads `js/quotes.js`, `js/quote-picker.js`, `js/favorites-store.js` and `js/app.js` into one `node:vm` context with a minimal fake `document`/`window`, so `js/app.js` behavior can be tested per Constitution II (missing)
+- [X] T021 CRITICAL: Test that the page renders one quote's text and author on load and that clicking `#new-quote` renders a different quote, in `tests/app.test.js` per FR-002, FR-004 and Constitution II (missing)
 - [ ] T022 CRITICAL: Test that clicking `#favorite-toggle` flips `aria-pressed` and the visible label, and that the indicator is re-rendered when a new quote is shown, in `tests/app.test.js` per FR-006, FR-007 and Constitution II (missing)
 - [ ] T023 CRITICAL: Test the favorite control's accessible name and state exposure in `tests/app.test.js` per FR-011 and Constitution II (missing)
-- [ ] T024 CRITICAL: Test that the page still renders a quote and toggles favorites when reading `window.localStorage` throws, in `tests/app.test.js` per FR-010 and Constitution II (missing)
+- [X] T024 CRITICAL: Test that the page still renders a quote and toggles favorites when reading `window.localStorage` throws, in `tests/app.test.js` per FR-010 and Constitution II (missing)
