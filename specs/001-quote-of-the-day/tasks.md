@@ -28,9 +28,9 @@ its own.
 
 **Purpose**: Create the page skeleton and test location
 
-- [ ] T001 Create `index.html` with the elements from contracts/ui-contract.md (`#quote` with `aria-live="polite"`, `<blockquote>` containing `#quote-text`, `#quote-author`, `#new-quote`, `#favorite-toggle` with `aria-pressed="false"`) and `defer` script tags in the order `js/quotes.js`, `js/quote-picker.js`, `js/favorites-store.js`, `js/app.js`
-- [ ] T002 [P] Create `css/styles.css` with centered, readable layout and button focus styles
-- [ ] T003 [P] Create `tests/` directory and confirm `node --test` runs from the repository root (Node 18+)
+- [X] T001 Create `index.html` with the elements from contracts/ui-contract.md (`#quote` with `aria-live="polite"`, `<blockquote>` containing `#quote-text`, `#quote-author`, `#new-quote`, `#favorite-toggle` with `aria-pressed="false"`) and `defer` script tags in the order `js/quotes.js`, `js/quote-picker.js`, `js/favorites-store.js`, `js/app.js`
+- [X] T002 [P] Create `css/styles.css` with centered, readable layout and button focus styles
+- [X] T003 [P] Create `tests/` directory and confirm `node --test` runs from the repository root (Node 18+)
 
 ---
 
@@ -40,8 +40,8 @@ its own.
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
-- [ ] T004 Write `tests/quotes.test.js` (FR-001): list has at least 10 quotes; every quote has non-empty `id`, `text`, `author`; IDs are unique and kebab-case. Run `node --test` and confirm it fails
-- [ ] T005 Create `js/quotes.js` exporting `QUOTES` with at least 10 quotes, each `{ id, text, author }`; `id` is "Required. Unique across the list. Kebab-case, never reused for a different quote." (data-model.md). End the file with the guarded `module.exports`. Confirm T004 passes
+- [X] T004 Write `tests/quotes.test.js` (FR-001): list has at least 10 quotes; every quote has non-empty `id`, `text`, `author`; IDs are unique and kebab-case. Run `node --test` and confirm it fails
+- [X] T005 Create `js/quotes.js` exporting `QUOTES` with at least 10 quotes, each `{ id, text, author }`; `id` is "Required. Unique across the list. Kebab-case, never reused for a different quote." (data-model.md). End the file with the guarded `module.exports`. Confirm T004 passes
 
 **Checkpoint**: Quote data ready and verified
 
@@ -57,12 +57,12 @@ its own.
 
 > Write these tests FIRST and confirm they FAIL before implementation
 
-- [ ] T006 [US1] Write `tests/quote-picker.test.js` cases for FR-002/FR-003: with no current quote, `pickRandomQuote(quotes, null, random)` returns a quote from the list; with an injected `random`, the choice is deterministic; across many calls with `Math.random` more than one quote is returned
+- [X] T006 [US1] Write `tests/quote-picker.test.js` cases for FR-002/FR-003: with no current quote, `pickRandomQuote(quotes, null, random)` returns a quote from the list; with an injected `random`, the choice is deterministic; across many calls with `Math.random` more than one quote is returned
 
 ### Implementation for User Story 1
 
-- [ ] T007 [US1] Implement `pickRandomQuote(quotes, currentId, random = Math.random)` in `js/quote-picker.js` per research.md R3; end with guarded `module.exports`. Confirm T006 passes
-- [ ] T008 [US1] Implement page-load rendering in `js/app.js`: pick a quote with `pickRandomQuote(QUOTES, null)`, set `#quote-text` and `#quote-author` with `textContent`, remember `currentQuoteId`
+- [X] T007 [US1] Implement `pickRandomQuote(quotes, currentId, random = Math.random)` in `js/quote-picker.js` per research.md R3; end with guarded `module.exports`. Confirm T006 passes
+- [X] T008 [US1] Implement page-load rendering in `js/app.js`: pick a quote with `pickRandomQuote(QUOTES, null)`, set `#quote-text` and `#quote-author` with `textContent`, remember `currentQuoteId`
 
 **Checkpoint**: MVP — the page shows a random quote
 
@@ -76,11 +76,11 @@ its own.
 
 ### Tests for User Story 2 ⚠️
 
-- [ ] T009 [US2] Add cases to `tests/quote-picker.test.js` for FR-005: over 200 calls, `pickRandomQuote(quotes, currentId)` never returns `currentId` when the list has 2+ quotes; with a one-quote list it returns that quote and does not loop. Confirm they fail if T007 did not already cover exclusion
+- [X] T009 [US2] Add cases to `tests/quote-picker.test.js` for FR-005: over 200 calls, `pickRandomQuote(quotes, currentId)` never returns `currentId` when the list has 2+ quotes; with a one-quote list it returns that quote and does not loop. Confirm they fail if T007 did not already cover exclusion
 
 ### Implementation for User Story 2
 
-- [ ] T010 [US2] Wire `#new-quote` in `js/app.js` (FR-004): on click, `pickRandomQuote(QUOTES, currentQuoteId)`, re-render quote, update `currentQuoteId`; button is a native `<button type="button">` so no form submit or reload occurs
+- [X] T010 [US2] Wire `#new-quote` in `js/app.js` (FR-004): on click, `pickRandomQuote(QUOTES, currentQuoteId)`, re-render quote, update `currentQuoteId`; button is a native `<button type="button">` so no form submit or reload occurs
 
 **Checkpoint**: US1 + US2 work independently of favorites
 
@@ -94,14 +94,14 @@ its own.
 
 ### Tests for User Story 3 ⚠️
 
-- [ ] T011 [US3] Write `tests/favorites-store.test.js` with an in-memory fake `Storage` covering: toggle on/off and `isFavorite` (FR-006, FR-007); toggle saves to key `qotd.favorites.v1` as a JSON array and a new store reads it back (FR-008); favorites follow IDs, not positions, when the quote list is reordered (FR-009)
-- [ ] T012 [US3] Add defensive cases to `tests/favorites-store.test.js` per contracts/storage-contract.md (FR-010): invalid JSON → no favorites; JSON that is not an array → no favorites; non-string and unknown IDs are dropped; storage whose `getItem`/`setItem` throw → store still toggles in memory and does not throw; `storage` itself `null` → same. Confirm T011–T012 fail
+- [X] T011 [US3] Write `tests/favorites-store.test.js` with an in-memory fake `Storage` covering: toggle on/off and `isFavorite` (FR-006, FR-007); toggle saves to key `qotd.favorites.v1` as a JSON array and a new store reads it back (FR-008); favorites follow IDs, not positions, when the quote list is reordered (FR-009)
+- [X] T012 [US3] Add defensive cases to `tests/favorites-store.test.js` per contracts/storage-contract.md (FR-010): invalid JSON → no favorites; JSON that is not an array → no favorites; non-string and unknown IDs are dropped; storage whose `getItem`/`setItem` throw → store still toggles in memory and does not throw; `storage` itself `null` → same. Confirm T011–T012 fail
 
 ### Implementation for User Story 3
 
-- [ ] T013 [US3] Implement `createFavoritesStore(storage, knownIds)` in `js/favorites-store.js` with `isFavorite(id)`, `toggle(id)` (returns new state), and `list()`, following research.md R4 and the storage contract; end with guarded `module.exports`. Confirm T011–T012 pass
-- [ ] T014 [US3] In `js/app.js`, obtain `localStorage` inside `try/catch` (access can throw), create the store with the IDs from `QUOTES`, and wire `#favorite-toggle`: on click call `toggle(currentQuoteId)`
-- [ ] T015 [US3] In `js/app.js`, render favorite state on every quote render and every toggle (FR-007, FR-011): `aria-pressed` `"true"`/`"false"` and label `★ Favorited` / `☆ Favorite` per contracts/ui-contract.md
+- [X] T013 [US3] Implement `createFavoritesStore(storage, knownIds)` in `js/favorites-store.js` with `isFavorite(id)`, `toggle(id)` (returns new state), and `list()`, following research.md R4 and the storage contract; end with guarded `module.exports`. Confirm T011–T012 pass
+- [X] T014 [US3] In `js/app.js`, obtain `localStorage` inside `try/catch` (access can throw), create the store with the IDs from `QUOTES`, and wire `#favorite-toggle`: on click call `toggle(currentQuoteId)`
+- [X] T015 [US3] In `js/app.js`, render favorite state on every quote render and every toggle (FR-007, FR-011): `aria-pressed` `"true"`/`"false"` and label `★ Favorited` / `☆ Favorite` per contracts/ui-contract.md
 
 **Checkpoint**: All three user stories work
 
@@ -109,10 +109,10 @@ its own.
 
 ## Phase 6: Polish & Cross-Cutting Concerns
 
-- [ ] T016 [P] Make `css/styles.css` responsive so long quotes wrap and stay readable at ~360px width, and show a visible keyboard focus style on both buttons
-- [ ] T017 [P] Add `README.md` with what the project is, how to open the page, and how to run tests (link to quickstart.md)
-- [ ] T018 Run `node --test` and confirm every test passes with none skipped (Constitution Quality Gate 1)
-- [ ] T019 Run the 9 manual checks in quickstart.md, from `file://` and from a static server, and confirm no console errors (Quality Gates 2–3)
+- [X] T016 [P] Make `css/styles.css` responsive so long quotes wrap and stay readable at ~360px width, and show a visible keyboard focus style on both buttons
+- [X] T017 [P] Add `README.md` with what the project is, how to open the page, and how to run tests (link to quickstart.md)
+- [X] T018 Run `node --test` and confirm every test passes with none skipped (Constitution Quality Gate 1)
+- [X] T019 Run the 9 manual checks in quickstart.md, from `file://` and from a static server, and confirm no console errors (Quality Gates 2–3)
 
 ---
 
