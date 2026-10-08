@@ -4,6 +4,7 @@
   const quoteText = document.getElementById("quote-text");
   const quoteAuthor = document.getElementById("quote-author");
   const favoriteButton = document.getElementById("favorite-toggle");
+  const favoriteIcon = document.getElementById("favorite-icon");
 
   const favorites = createFavoritesStore(
     getLocalStorage(),
@@ -21,10 +22,12 @@
     }
   }
 
+  // The button's name stays "Favorite"; aria-pressed carries the state for assistive
+  // technology and the (aria-hidden) star shows it visually.
   function renderFavoriteState() {
     const isFavorite = favorites.isFavorite(currentQuoteId);
     favoriteButton.setAttribute("aria-pressed", String(isFavorite));
-    favoriteButton.textContent = isFavorite ? "★ Favorited" : "☆ Favorite";
+    favoriteIcon.textContent = isFavorite ? "★" : "☆";
   }
 
   function showQuote(quote) {
